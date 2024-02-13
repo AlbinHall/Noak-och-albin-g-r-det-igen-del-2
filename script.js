@@ -3,10 +3,12 @@ let form = document.querySelector("form")
 let bigGrid = document.querySelector("#bigGrid")
 let inputList = []
 let label = document.querySelector("label")
+let checkAll = document.querySelector("#checkAll")
 
 form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", removeTodoElement)
 bigGrid.addEventListener("click", ifChecked)
+checkAll.addEventListener("click", checkALL)
 
 function showOrHideLabel() {
     label.style.display = inputList.length > 0 ? "inline-block" : "none"
@@ -55,7 +57,6 @@ function removeTodoElement() {
     }
 }
 
-
 function ifChecked(){
     let checked = document.querySelectorAll("input[type=checkbox]:checked")
     for (let i = 0; i < checked.length; i++)
@@ -67,4 +68,25 @@ function ifChecked(){
     {
         unchecked[i].nextElementSibling.style.textDecoration = "none"
     }
+}
+
+function checkALL() {
+    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
+    for (let i = 0; i < allCheckBoxes.length; i++)
+    {
+        allCheckBoxes[i].checked = true
+    }
+    ifChecked()
+    checkAll.removeEventListener("click", checkALL)
+    checkAll.addEventListener("click", uncheckAll)
+}
+function uncheckAll() {
+    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
+    for (let i = 0; i < allCheckBoxes.length; i++)
+    {
+        allCheckBoxes[i].checked = false
+    }
+    ifChecked()
+    checkAll.removeEventListener("click", uncheckAll)
+    checkAll.addEventListener("click", checkALL)
 }
