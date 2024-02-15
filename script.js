@@ -10,16 +10,6 @@ bigGrid.addEventListener("click", removeTodoElement)
 bigGrid.addEventListener("click", ifChecked)
 checkAll.addEventListener("click", checkALL)
 
-function showOrHideLabel() {
-    label.style.display = inputList.length > 0 ? "inline-block" : "none"
-}
-
-function showOrHideTasks() {
-    bigGrid.style.display = bigGrid.style.display === "none" || bigGrid.style.display === "" ? "block" : "none"
-}
-
-label.addEventListener("click", showOrHideTasks)
-
 function AddTodoElement(event) {
     event.preventDefault()
     inputList.push(userInput.value)
@@ -36,25 +26,38 @@ function createTodoElement() {
         let todoDiv = document.createElement("div")
         let listItem = document.createElement("p")
         let checkBox  = document.createElement("input")
-        let removeButton = document.createElement("button")
+        let deleteButton = document.createElement("button");
+
+        
         checkBox.type = "checkbox";
         listItem.innerText = inputList[i]
-        removeButton.innerText = "X"
+        deleteButton.innerText = "Delete";
+
 
         todoDiv.appendChild(checkBox)
         todoDiv.appendChild(listItem)
-        todoDiv.appendChild(removeButton)
+        todoDiv.appendChild(deleteButton);
+        
         bigGrid.appendChild(todoDiv)
+        
+        deleteButton.addEventListener("click", function () {
+            removeTodoElement(i);
+        });
+
+        // Add event listener to show/hide delete button on hover
+        todoDiv.addEventListener("mouseover", function () {
+            deleteButton.style.display = "inline-block";
+        });
+
+        todoDiv.addEventListener("mouseout", function () {
+            deleteButton.style.display = "none";
+        });
     }   
 }
 
-function removeTodoElement() {
-    if (event.target.tagName === "BUTTON")
-    {
-        let index = inputList.indexOf(event.target.previousElementSibling.innerText)
-        inputList.splice(index, 1)
-        createTodoElement()
-    }
+function removeTodoElement(index) {
+    inputList.splice(index, 1);
+    createTodoElement();
 }
 
 function ifChecked(){
