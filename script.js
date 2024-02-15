@@ -4,11 +4,15 @@ let bigGrid = document.querySelector("#bigGrid")
 let inputList = []
 let label = document.querySelector("label")
 let checkAll = document.querySelector("#checkAll")
+let all = document.querySelector("#All")
+let active = document.querySelector("#Active")
+let completed = document.querySelector("#Completed")
 
 form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", ifChecked)
 checkAll.addEventListener("click", checkALL)
 removeTodoElement.addEventListener("click", removeTodoElement)
+bigGrid.AllAciveCompleted("click", AllAciveCompleted)
 
 
 function AddTodoElement(event) {
@@ -95,19 +99,21 @@ function uncheckAll() {
     checkAll.addEventListener("click", checkALL)
 }
 
-function filterTodos(){
-    let CheckBoxes = document.querySelectorAll("input[type=checkbox]")
-    let Active = []
-    let Completed = []
-    for (let i = 0; i < CheckBoxes.length; i++)
+function AllAciveCompleted() {
+    let allTodos = []
+    let activeTodos = []
+    let completedTodos = []
+    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
+    for (let i = 0; i < allCheckBoxes.length; i++)
     {
-        if (CheckBoxes[i].checked == true)
+        allTodos.push(allCheckBoxes[i].nextElementSibling.innerText)
+        if (allCheckBoxes[i].checked)
         {
-            Completed.push(CheckBoxes[i].nextElementSibling.innerText)
+            completedTodos.push(allCheckBoxes[i].nextElementSibling.innerText)
         }
         else
         {
-            Active.push(CheckBoxes[i].nextElementSibling.innerText)
+            activeTodos.push(allCheckBoxes[i].nextElementSibling.innerText)
         }
     }
 }
