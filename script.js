@@ -10,6 +10,7 @@ bigGrid.addEventListener("click", ifChecked)
 Check.addEventListener("click", checkALL)
 Delete.addEventListener("click", removeTodoElement)
 
+
 function AddTodoElement(event) {
     event.preventDefault()
     inputList.push(userInput.value)
@@ -92,4 +93,21 @@ function uncheckAll() {
     ifChecked()
     checkAll.removeEventListener("click", uncheckAll)
     checkAll.addEventListener("click", checkALL)
+}
+
+function filterTodos(){
+    let CheckBoxes = document.querySelectorAll("input[type=checkbox]")
+    let Active = []
+    let Completed = []
+    for (let i = 0; i < CheckBoxes.length; i++)
+    {
+        if (CheckBoxes[i].checked == true)
+        {
+            Completed.push(CheckBoxes[i].nextElementSibling.innerText)
+        }
+        else
+        {
+            Active.push(CheckBoxes[i].nextElementSibling.innerText)
+        }
+    }
 }
