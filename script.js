@@ -7,8 +7,8 @@ let checkAll = document.querySelector("#checkAll")
 
 form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", ifChecked)
-Check.addEventListener("click", checkALL)
-Delete.addEventListener("click", removeTodoElement)
+checkAll.addEventListener("click", checkALL)
+removeTodoElement.addEventListener("click", removeTodoElement)
 
 
 function AddTodoElement(event) {
