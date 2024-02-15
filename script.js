@@ -6,9 +6,9 @@ let label = document.querySelector("label")
 let checkAll = document.querySelector("#checkAll")
 
 form.addEventListener("submit", AddTodoElement )
-bigGrid.addEventListener("click", removeTodoElement)
 bigGrid.addEventListener("click", ifChecked)
-checkAll.addEventListener("click", checkALL)
+Check.addEventListener("click", checkALL)
+Delete.addEventListener("click", removeTodoElement)
 
 function AddTodoElement(event) {
     event.preventDefault()
@@ -40,17 +40,17 @@ function createTodoElement() {
         
         bigGrid.appendChild(todoDiv)
         
+        // Add event listener to delete button
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
         });
 
-        // Add event listener to show/hide delete button on hover
-        todoDiv.addEventListener("mouseover", function () {
-            deleteButton.style.display = "inline-block";
-        });
-
         todoDiv.addEventListener("mouseout", function () {
             deleteButton.style.display = "none";
+        });
+
+        todoDiv.addEventListener("mouseover", function () {
+            deleteButton.style.display = "inline-block";
         });
     }   
 }
