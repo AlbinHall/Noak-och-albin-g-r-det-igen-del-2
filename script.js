@@ -12,7 +12,6 @@ form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", ifChecked)
 checkAll.addEventListener("click", checkALL)
 removeTodoElement.addEventListener("click", removeTodoElement)
-bigGrid.AllAciveCompleted("click", AllAciveCompleted)
 
 
 function AddTodoElement(event) {
@@ -100,20 +99,5 @@ function uncheckAll() {
 }
 
 function AllAciveCompleted() {
-    let allTodos = []
-    let activeTodos = []
-    let completedTodos = []
-    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
-    for (let i = 0; i < allCheckBoxes.length; i++)
-    {
-        allTodos.push(allCheckBoxes[i].nextElementSibling.innerText)
-        if (allCheckBoxes[i].checked)
-        {
-            completedTodos.push(allCheckBoxes[i].nextElementSibling.innerText)
-        }
-        else
-        {
-            activeTodos.push(allCheckBoxes[i].nextElementSibling.innerText)
-        }
-    }
+
 }
