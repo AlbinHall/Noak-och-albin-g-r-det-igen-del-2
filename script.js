@@ -4,14 +4,20 @@ let bigGrid = document.querySelector("#bigGrid")
 let inputList = []
 let label = document.querySelector("label")
 let checkAll = document.querySelector("#checkAll")
-let all = document.querySelector("#All")
-let active = document.querySelector("#Active")
-let completed = document.querySelector("#Completed")
+let all = document.querySelector("#all")
+let active = document.querySelector("#active")
+let completed = document.querySelector("#completed")
+
 
 form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", ifChecked)
 checkAll.addEventListener("click", checkALL)
 removeTodoElement.addEventListener("click", removeTodoElement)
+
+
+
+
+
 
 
 function AddTodoElement(event) {
@@ -98,6 +104,11 @@ function uncheckAll() {
     checkAll.addEventListener("click", checkALL)
 }
 
-function AllAciveCompleted() {
+function completedTodos() {
 
+    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
+    for (let i = 0; i < allCheckBoxes.length; i++)
+    {
+
+    }
 }
