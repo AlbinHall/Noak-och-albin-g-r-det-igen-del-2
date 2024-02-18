@@ -17,6 +17,8 @@ checkAll.addEventListener("click", function() {
     checkCounter++
 })
 
+all.addEventListener("click", showAll)
+
 function AddTodoElement(event) {
     event.preventDefault()
     inputList.push({ text: userInput.value, checked: false })
@@ -112,15 +114,22 @@ function checkALL() {
     }
 
     ifChecked()
-
 }
 
 function activeItems() {
     let todoDivs = document.querySelectorAll("#bigGrid div");
-    console.log("Entering activeItems function");
+
     for (let i = 0; i < inputList.length; i++) {
         if (inputList[i].checked) {
             todoDivs[i].style.display = "none";
         }
+    }
+}
+
+function showAll() {
+    let todoDivs = document.querySelectorAll("#bigGrid div");
+
+    for (let i = 0; i < inputList.length; i++) {
+        todoDivs[i].style.display = "flex";
     }
 }
