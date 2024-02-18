@@ -18,6 +18,7 @@ checkAll.addEventListener("click", function() {
 })
 
 all.addEventListener("click", showAll)
+completed.addEventListener("click", completedItems)
 
 function AddTodoElement(event) {
     event.preventDefault()
@@ -85,8 +86,14 @@ active.addEventListener("click", activeItems);
 
 function displayBtns() {
     let allTodo = document.querySelectorAll("#allTodos");
+    let check = document.querySelectorAll("#checkAll");
     if (inputList.length > 0) {
-        allTodo[0].style.display = "flex";
+        allTodo[0].style.visibility = "visible";
+        check[0].style.visibility = "visible";
+    }
+    else {
+        allTodo[0].style.visibility = "hidden";
+        check[0].style.visibility = "hidden";
     }
 }
 
@@ -116,7 +123,7 @@ function checkALL() {
     }
 
     ifChecked()
-}
+} //fungerar inte längre.. :(
 
 function activeItems() {
     let todoDivs = document.querySelectorAll("#bigGrid div");
@@ -124,6 +131,9 @@ function activeItems() {
     for (let i = 0; i < inputList.length; i++) {
         if (inputList[i].checked) {
             todoDivs[i].style.display = "none";
+        }
+        else {
+            todoDivs[i].style.display = "flex";
         }
     }
 }
@@ -133,5 +143,18 @@ function showAll() {
 
     for (let i = 0; i < inputList.length; i++) {
         todoDivs[i].style.display = "flex";
+    }
+}
+
+function completedItems() {
+    let todoDivs = document.querySelectorAll("#bigGrid div");
+
+    for (let i = 0; i < inputList.length; i++) {
+        if (inputList[i].checked) {
+            todoDivs[i].style.display = "flex";
+        }
+        else {
+            todoDivs[i].style.display = "none";
+        }
     }
 }

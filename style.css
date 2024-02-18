@@ -7,12 +7,10 @@ body{
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: #f5f5f5;
 }
-#allTodos, #submit{
-    display: none;
-}
-#checkAll{
+#allTodos, #submit, #checkAll{
     visibility: hidden;
 }
+
 input:focus {outline:none;}
 #userInput{
     font-size: 24px;
@@ -39,7 +37,6 @@ h1{
     font-weight: 200;
 }
 label{
-    margin: 30px;
     color: #4d4d4d;
     font-size: 11px;
     text-align: center;
