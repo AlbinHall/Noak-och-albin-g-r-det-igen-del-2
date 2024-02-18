@@ -12,9 +12,9 @@ body{
 #allTodos, #checkAll{
     visibility: hidden;
 }
-#submit{
-    display: none;
-}
+
+
+
 
 h1{
     margin: 2%;
@@ -25,22 +25,27 @@ h1{
 }
 
 #formDiv{
-    background-color: white;
+
     box-shadow: 0 2px 15px -1px rgba(0,0,0,.3);
     width: 30%;
+    background-color: white;
+    margin-bottom: 1%;
 }
 form{
-    display: grid;
-    grid-template-columns: 0.13fr 2fr;
+    display:flex;
     height: 60px;
 }
 
 
 input:focus {outline:none;}
-#checkAll:focus{
+#userInput:focus{
     border-color: rgba(255, 0, 0, 0.377);
     box-shadow: 0 0 4px red;
 }
+
+
+
+
 #checkAll{
     background-color: white;
     outline:none;
@@ -50,14 +55,16 @@ input:focus {outline:none;}
     font-size: 24px;
     font-style: italic;
     border: 0;
-    padding-left: 2%;
-    width: 95%;
+    padding-left: 30px;
+    width: 100%;
     margin-left:3px;
 }
 
-#bigGrid{
-    margin: 1%;
-}
+
+
+
+
+
 
 label{
     margin: 2%;
