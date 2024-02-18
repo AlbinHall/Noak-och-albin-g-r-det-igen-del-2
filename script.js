@@ -14,15 +14,9 @@ bigGrid.addEventListener("click", ifChecked)
 checkAll.addEventListener("click", checkALL)
 removeTodoElement.addEventListener("click", removeTodoElement)
 
-
-
-
-
-
-
 function AddTodoElement(event) {
     event.preventDefault()
-    inputList.push(userInput.value)
+    inputList.push({ text: userInput.value, checked: false })
 
     userInput.value=""
 
@@ -40,9 +34,14 @@ function createTodoElement() {
 
         
         checkBox.type = "checkbox";
-        listItem.innerText = inputList[i]
-        deleteButton.innerText = "Delete";
+        checkBox.checked = inputList[i].checked
+        listItem.innerText = inputList[i].text
 
+        if (inputList[i].checked) {
+            listItem.style.textDecoration = "line-through";
+        }
+
+        deleteButton.innerText = "X"
 
         todoDiv.appendChild(checkBox)
         todoDiv.appendChild(listItem)
@@ -50,7 +49,7 @@ function createTodoElement() {
         
         bigGrid.appendChild(todoDiv)
         
-        // Add event listener to delete button
+        
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
         });
@@ -93,6 +92,7 @@ function checkALL() {
     checkAll.removeEventListener("click", checkALL)
     checkAll.addEventListener("click", uncheckAll)
 }
+
 function uncheckAll() {
     let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
     for (let i = 0; i < allCheckBoxes.length; i++)
