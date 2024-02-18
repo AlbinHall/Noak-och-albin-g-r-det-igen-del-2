@@ -16,6 +16,13 @@ input:focus {outline:none;}
     width: 80%;
     
 }
+#formDiv{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 2px 15px -1px rgba(0,0,0,.2);
+
+}
 form{
     display: flex;
     justify-content: center;

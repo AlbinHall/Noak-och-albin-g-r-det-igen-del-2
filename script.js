@@ -52,6 +52,8 @@ function createTodoElement() {
         todoDiv.appendChild(deleteButton);
         bigGrid.appendChild(todoDiv);
 
+        todoDiv.style.display = "flex";
+
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
         });
