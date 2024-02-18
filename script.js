@@ -11,8 +11,9 @@ let completed = document.querySelector("#completed")
 
 form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", ifChecked)
-checkAll.addEventListener("click", checkALL)
-removeTodoElement.addEventListener("click", removeTodoElement)
+checkAll.addEventListener("click", checkALL
+)
+
 
 function AddTodoElement(event) {
     event.preventDefault()
@@ -69,16 +70,18 @@ function removeTodoElement(index) {
     createTodoElement();
 }
 
-function ifChecked(){
-    let checked = document.querySelectorAll("input[type=checkbox]:checked")
-    for (let i = 0; i < checked.length; i++)
-    {
-        checked[i].nextElementSibling.style.textDecoration = "line-through"
+active.addEventListener("click", activeItems);
+
+
+function ifChecked() {
+    let checked = document.querySelectorAll("input[type=checkbox]:checked");
+    for (let i = 0; i < checked.length; i++) {
+        checked[i].nextElementSibling.style.textDecoration = "line-through";
     }
-    let unchecked = document.querySelectorAll("input[type=checkbox]:not(:checked)")
-    for (let i = 0; i < unchecked.length; i++)
-    {
-        unchecked[i].nextElementSibling.style.textDecoration = "none"
+
+    let unchecked = document.querySelectorAll("input[type=checkbox]:not(:checked)");
+    for (let i = 0; i < unchecked.length; i++) {
+        unchecked[i].nextElementSibling.style.textDecoration = "none";
     }
 }
 
@@ -104,11 +107,12 @@ function uncheckAll() {
     checkAll.addEventListener("click", checkALL)
 }
 
-function completedTodos() {
-
-    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
-    for (let i = 0; i < allCheckBoxes.length; i++)
-    {
-
+function activeItems() {
+    console.log("Entering activeItems function");
+    for (let i = 0; i < inputList.length; i++) {
+        console.log("Checking item", i, "checked:", inputList[i].checked);
+        if (inputList[i].checked) {
+            console.log("Item", i, "is checked");
+        }
     }
 }
