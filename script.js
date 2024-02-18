@@ -7,13 +7,15 @@ let checkAll = document.querySelector("#checkAll")
 let all = document.querySelector("#all")
 let active = document.querySelector("#active")
 let completed = document.querySelector("#completed")
+let checkCounter = 0
 
 
 form.addEventListener("submit", AddTodoElement )
 bigGrid.addEventListener("click", ifChecked)
-checkAll.addEventListener("click", checkALL
-)
-
+checkAll.addEventListener("click", function() {
+    checkALL()
+    checkCounter++
+})
 
 function AddTodoElement(event) {
     event.preventDefault()
@@ -25,32 +27,29 @@ function AddTodoElement(event) {
 }
 
 function createTodoElement() {
-    bigGrid.innerText = ""
-    for (let i = 0; i < inputList.length; i++)
-    {
-        let todoDiv = document.createElement("div")
-        let listItem = document.createElement("p")
-        let checkBox  = document.createElement("input")
+    bigGrid.innerHTML = ""; 
+
+    for (let i = 0; i < inputList.length; i++) {
+        let todoDiv = document.createElement("div");
+        let listItem = document.createElement("p");
+        let checkBox = document.createElement("input");
         let deleteButton = document.createElement("button");
 
-        
         checkBox.type = "checkbox";
-        checkBox.checked = inputList[i].checked
-        listItem.innerText = inputList[i].text
+        checkBox.checked = inputList[i].checked;
+        listItem.innerText = inputList[i].text;
 
         if (inputList[i].checked) {
             listItem.style.textDecoration = "line-through";
         }
 
-        deleteButton.innerText = "X"
+        deleteButton.innerText = "X";
 
-        todoDiv.appendChild(checkBox)
-        todoDiv.appendChild(listItem)
+        todoDiv.appendChild(checkBox);
+        todoDiv.appendChild(listItem);
         todoDiv.appendChild(deleteButton);
-        
-        bigGrid.appendChild(todoDiv)
-        
-        
+        bigGrid.appendChild(todoDiv);
+
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
         });
@@ -60,59 +59,68 @@ function createTodoElement() {
         });
 
         todoDiv.addEventListener("mouseover", function () {
-            deleteButton.style.display = "inline-block";
+            deleteButton.style.display = "flex";
         });
-    }   
+
+        checkBox.addEventListener("change", function () {
+            inputList[i].checked = checkBox.checked;
+            ifChecked();
+        });
+    }
+
+    displayBtns();
 }
 
 function removeTodoElement(index) {
     inputList.splice(index, 1);
     createTodoElement();
+    displayBtns();
 }
 
 active.addEventListener("click", activeItems);
 
+function displayBtns() {
+    let allTodo = document.querySelectorAll("#allTodos");
+    if (inputList.length > 0) {
+        allTodo[0].style.display = "flex";
+    }
+}
 
 function ifChecked() {
+
     let checked = document.querySelectorAll("input[type=checkbox]:checked");
+    let unchecked = document.querySelectorAll("input[type=checkbox]:not(:checked)");
+
     for (let i = 0; i < checked.length; i++) {
         checked[i].nextElementSibling.style.textDecoration = "line-through";
     }
 
-    let unchecked = document.querySelectorAll("input[type=checkbox]:not(:checked)");
     for (let i = 0; i < unchecked.length; i++) {
         unchecked[i].nextElementSibling.style.textDecoration = "none";
     }
 }
 
 function checkALL() {
-    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
-    for (let i = 0; i < allCheckBoxes.length; i++)
+    for (let i = 0; i < inputList.length; i++)
     {
-        allCheckBoxes[i].checked = true
+        if (checkCounter % 2 === 0) {
+            inputList[i].checked = true
+        }
+        else {
+            inputList[i].checked = false
+        }
     }
-    ifChecked()
-    checkAll.removeEventListener("click", checkALL)
-    checkAll.addEventListener("click", uncheckAll)
-}
 
-function uncheckAll() {
-    let allCheckBoxes = document.querySelectorAll("input[type=checkbox]")
-    for (let i = 0; i < allCheckBoxes.length; i++)
-    {
-        allCheckBoxes[i].checked = false
-    }
     ifChecked()
-    checkAll.removeEventListener("click", uncheckAll)
-    checkAll.addEventListener("click", checkALL)
+
 }
 
 function activeItems() {
+    let todoDivs = document.querySelectorAll("#bigGrid div");
     console.log("Entering activeItems function");
     for (let i = 0; i < inputList.length; i++) {
-        console.log("Checking item", i, "checked:", inputList[i].checked);
         if (inputList[i].checked) {
-            console.log("Item", i, "is checked");
+            todoDivs[i].style.display = "none";
         }
     }
 }
