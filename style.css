@@ -2,36 +2,37 @@
   margin: 6px;
 }
 body{
+    display: grid;
+    place-items: center;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: #f5f5f5;
 }
-#allTodos, #submit, #checkAll{
+#allTodos, #submit{
     display: none;
+}
+#checkAll{
+    visibility: hidden;
 }
 input:focus {outline:none;}
 #userInput{
     font-size: 24px;
     font-style: italic;
     border: 0;
-    width: 80%;
-    
+    padding-left: 2%;
+    width: 100%;
 }
 #formDiv{
-    display: flex;
-    justify-content: center;
     background-color: white;
-    box-shadow: 0 2px 15px -1px rgba(0,0,0,.2);
-
+    box-shadow: 0 2px 15px -1px rgba(0,0,0,.3);
+    width: 60%;
 }
-
 form{
     display: flex;
-    justify-content: center;
-    padding: 11px;
-    background-color: white;
-    width: 50%;
+    place-items: center;
+    padding: 4px;
 }
 h1{
+    margin: 2%;
     color: red;
     text-align: center;
     font-size: 80px;
