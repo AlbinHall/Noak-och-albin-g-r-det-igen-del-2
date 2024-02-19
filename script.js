@@ -37,7 +37,9 @@ function createTodoElement() {
         let listItem = document.createElement("p");
         let checkBox = document.createElement("input");
         let deleteButton = document.createElement("button");
-
+        
+        checkBox.id = "checkBox";
+        deleteButton.id = "deleteButton";
         checkBox.type = "checkbox";
         checkBox.checked = inputList[i].checked;
         listItem.innerText = inputList[i].text;
@@ -52,6 +54,27 @@ function createTodoElement() {
         todoDiv.appendChild(listItem);
         todoDiv.appendChild(deleteButton);
         bigGrid.appendChild(todoDiv);
+
+        todoDiv.style.width = "573px";
+        todoDiv.style.height = "60px";
+        todoDiv.style.backgroundColor = "white";
+        todoDiv.style.boxShadow = "0 2px 15px -1px rgba(0,0,0,.3)";
+
+        listItem.style.fontSize = "24px";
+        listItem.style.display = "flex";
+        listItem.style.alignItems = "center";
+        listItem.style.width = "500px";
+
+        checkBox.style.width = "30px";
+        checkBox.style.height = "30px";
+        checkBox.style.margin = "15px";
+
+        deleteButton.style.width = "30px";
+        deleteButton.style.height = "30px";
+        deleteButton.style.margin = "15px";
+        deleteButton.style.display = "none";
+
+
 
         todoDiv.style.display = "flex";
 
