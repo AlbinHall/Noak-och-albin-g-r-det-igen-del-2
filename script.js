@@ -9,9 +9,7 @@ let active = document.querySelector("#active")
 let completed = document.querySelector("#completed")
 let checkCounter = 0
 
-
 form.addEventListener("submit", AddTodoElement )
-bigGrid.addEventListener("click", ifChecked)
 checkAll.addEventListener("click", function() {
     checkALL()
     checkCounter++
@@ -38,8 +36,6 @@ function createTodoElement() {
         let checkBox = document.createElement("input");
         let deleteButton = document.createElement("button");
         
-        checkBox.id = "checkBox";
-        deleteButton.id = "deleteButton";
         checkBox.type = "checkbox";
         checkBox.checked = inputList[i].checked;
         listItem.innerText = inputList[i].text;
@@ -48,54 +44,40 @@ function createTodoElement() {
             listItem.style.textDecoration = "line-through";
         }
 
-        deleteButton.innerText = "X";
+        deleteButton.innerText = "HEEEJ";
 
         todoDiv.appendChild(checkBox);
         todoDiv.appendChild(listItem);
         todoDiv.appendChild(deleteButton);
         bigGrid.appendChild(todoDiv);
+        let allActiveComplete = document.querySelector("#allTodos")
+        allActiveComplete.style.display = "flex"
 
-        todoDiv.style.width = "573px";
-        todoDiv.style.height = "60px";
-        todoDiv.style.backgroundColor = "white";
-        todoDiv.style.boxShadow = "0 2px 15px -1px rgba(0,0,0,.3)";
+        todoDiv.classList.add("todoItemDiv")
 
-        listItem.style.fontSize = "24px";
-        listItem.style.display = "flex";
-        listItem.style.alignItems = "center";
-        listItem.style.width = "500px";
+        listItem.classList.add("todoListItem")
 
-        checkBox.style.width = "30px";
-        checkBox.style.height = "30px";
-        checkBox.style.margin = "15px";
+        checkBox.classList.add("todoCheckBox")
 
-        deleteButton.style.width = "30px";
-        deleteButton.style.height = "30px";
-        deleteButton.style.margin = "15px";
-        deleteButton.style.display = "none";
+        deleteButton.classList.add("todoDeleteButton")
 
+        
 
-
-        todoDiv.style.display = "flex";
 
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
         });
 
-        todoDiv.addEventListener("mouseout", function () {
-            deleteButton.style.display = "none";
-        });
-
-        todoDiv.addEventListener("mouseover", function () {
-            deleteButton.style.display = "flex";
-        });
-
         checkBox.addEventListener("change", function () {
             inputList[i].checked = checkBox.checked;
-            ifChecked();
+            if (inputList[i].checked) {
+                listItem.style.textDecoration = "line-through";
+            }else
+            {
+                listItem.style.textDecoration = "none";
+            }
         });
     }
-
     displayBtns();
 }
 
@@ -111,26 +93,12 @@ function displayBtns() {
     let allTodo = document.querySelectorAll("#allTodos");
     let check = document.querySelectorAll("#checkAll");
     if (inputList.length > 0) {
-        allTodo[0].style.visibility = "visible";
+        allTodo[0].style.display = "flex";
         check[0].style.visibility = "visible";
     }
     else {
-        allTodo[0].style.visibility = "hidden";
+        allTodo[0].style.display = "none";
         check[0].style.visibility = "hidden";
-    }
-}
-
-function ifChecked() {
-
-    let checked = document.querySelectorAll("input[type=checkbox]:checked");
-    let unchecked = document.querySelectorAll("input[type=checkbox]:not(:checked)");
-
-    for (let i = 0; i < checked.length; i++) {
-        checked[i].nextElementSibling.style.textDecoration = "line-through";
-    }
-
-    for (let i = 0; i < unchecked.length; i++) {
-        unchecked[i].nextElementSibling.style.textDecoration = "none";
     }
 }
 
@@ -144,9 +112,8 @@ function checkALL() {
             inputList[i].checked = false
         }
     }
-
-    ifChecked()
-} //fungerar inte längre.. :(
+    createTodoElement()
+}
 
 function activeItems() {
     let todoDivs = document.querySelectorAll("#bigGrid div");
