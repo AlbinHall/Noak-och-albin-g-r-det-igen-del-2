@@ -9,6 +9,7 @@ let active = document.querySelector("#active")
 let completed = document.querySelector("#completed")
 let checkCounter = 0
 let itemsLeft = document.querySelector("#itemsLeft")
+let clearCompleted = document.querySelector("#clearCompleted")
 
 
 form.addEventListener("submit", AddTodoElement )
@@ -16,6 +17,8 @@ checkAll.addEventListener("click", function() {
     checkALL()
     checkCounter++
 })
+
+clearCompleted.addEventListener("click", clearAllChecked)
 
 all.addEventListener("click", showAll)
 completed.addEventListener("click", completedItems)
@@ -86,6 +89,15 @@ function createTodoElement() {
     }
     displayBtns();
     itemCounter();
+}
+
+function clearAllChecked() {
+    for (let i = 0; i < inputList.length; i++) {
+        if (inputList[i].checked) {
+            inputList.splice(i, 1)
+        }
+    }
+    createTodoElement();
 }
 
 function itemCounter() {
