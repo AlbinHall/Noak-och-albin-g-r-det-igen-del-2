@@ -48,7 +48,7 @@ input:focus {outline:none;}
 }
 
 #allTodos{
-    display: flex;
+    display: none;
     justify-content: space-between;
     flex-direction: rows;
     align-content: center;
