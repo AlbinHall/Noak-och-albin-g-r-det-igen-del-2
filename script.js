@@ -8,6 +8,7 @@ let all = document.querySelector("#all")
 let active = document.querySelector("#active")
 let completed = document.querySelector("#completed")
 let checkCounter = 0
+let itemsLeft = document.querySelector("#itemsLeft")
 
 form.addEventListener("submit", AddTodoElement )
 checkAll.addEventListener("click", function() {
@@ -44,7 +45,7 @@ function createTodoElement() {
             listItem.style.textDecoration = "line-through";
         }
 
-        deleteButton.innerText = "HEEEJ";
+        deleteButton.innerText = "X";
 
         todoDiv.appendChild(checkBox);
         todoDiv.appendChild(listItem);
@@ -79,6 +80,17 @@ function createTodoElement() {
         });
     }
     displayBtns();
+    itemCounter();
+}
+
+function itemCounter() {
+    if (inputList.length > 1) {
+        itemsLeft.innerText = inputList.length + " items left"
+    }
+    else {
+        itemsLeft.innerText = inputList.length + " item left"
+    }
+    
 }
 
 function removeTodoElement(index) {
