@@ -10,6 +10,7 @@ let completed = document.querySelector("#completed")
 let checkCounter = 0
 let itemsLeft = document.querySelector("#itemsLeft")
 
+
 form.addEventListener("submit", AddTodoElement )
 checkAll.addEventListener("click", function() {
     checkALL()
@@ -36,13 +37,14 @@ function createTodoElement() {
         let listItem = document.createElement("p");
         let checkBox = document.createElement("input");
         let deleteButton = document.createElement("button");
-        
+
         checkBox.type = "checkbox";
         checkBox.checked = inputList[i].checked;
         listItem.innerText = inputList[i].text;
 
         if (inputList[i].checked) {
             listItem.style.textDecoration = "line-through";
+            listItem.style.color = "grey";
         }
 
         deleteButton.innerText = "X";
@@ -73,10 +75,13 @@ function createTodoElement() {
             inputList[i].checked = checkBox.checked;
             if (inputList[i].checked) {
                 listItem.style.textDecoration = "line-through";
-            }else
-            {
+                listItem.style.color = "grey";
+                
+            } else {
                 listItem.style.textDecoration = "none";
+                listItem.style.color = "black";
             }
+            itemCounter();
         });
     }
     displayBtns();
@@ -84,14 +89,21 @@ function createTodoElement() {
 }
 
 function itemCounter() {
+    let counter = inputList.length;
+    for(let i = 0; i < inputList.length; i++){
+        if(inputList[i].checked){
+            counter--;
+        }
+    }
     if (inputList.length > 1) {
-        itemsLeft.innerText = inputList.length + " items left"
+        itemsLeft.innerText = counter + " items left"
+
     }
-    else {
-        itemsLeft.innerText = inputList.length + " item left"
+    if (counter === 1) {
+        itemsLeft.innerText = counter + " item left"
     }
-    
 }
+
 
 function removeTodoElement(index) {
     inputList.splice(index, 1);
