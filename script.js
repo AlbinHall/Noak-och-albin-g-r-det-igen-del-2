@@ -52,6 +52,7 @@ function createTodoElement() {
 
         deleteButton.innerText = "X";
 
+        // add JS-created elements to HTML
         todoDiv.appendChild(checkBox);
         todoDiv.appendChild(listItem);
         todoDiv.appendChild(deleteButton);
@@ -59,16 +60,11 @@ function createTodoElement() {
         let allActiveComplete = document.querySelector("#allTodos")
         allActiveComplete.style.display = "flex"
 
+        //Add Class to elements
         todoDiv.classList.add("todoItemDiv")
-
         listItem.classList.add("todoListItem")
-
         checkBox.classList.add("todoCheckBox")
-
         deleteButton.classList.add("todoDeleteButton")
-
-        
-
 
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
@@ -92,9 +88,9 @@ function createTodoElement() {
 }
 
 function clearAllChecked() {
-    for (let i = 0; i < inputList.length; i++) {
+    for (let i = inputList.length - 1; i >= 0; i--) {
         if (inputList[i].checked) {
-            inputList.splice(i, 1)
+            inputList.splice(i, 1);
         }
     }
     createTodoElement();
@@ -107,20 +103,23 @@ function itemCounter() {
             counter--;
         }
     }
-    if (inputList.length > 1) {
+    if (inputList.length > 1 || counter === 0) {
         itemsLeft.innerText = counter + " items left"
-
     }
     if (counter === 1) {
         itemsLeft.innerText = counter + " item left"
     }
+    if (inputList.length > counter) {
+        clearCompleted.style.visibility = "visible"
+    }
+    else {
+        clearCompleted.style.visibility = "hidden"
+    }
 }
-
 
 function removeTodoElement(index) {
     inputList.splice(index, 1);
     createTodoElement();
-    displayBtns();
 }
 
 active.addEventListener("click", activeItems);
