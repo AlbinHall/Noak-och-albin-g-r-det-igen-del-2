@@ -56,6 +56,8 @@ input:focus {outline:none;}
     background-color: white;
     box-shadow: 0 3px 2px -2px gray;
     margin-top: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #allTodos button{
@@ -73,7 +75,7 @@ input:focus {outline:none;}
     width: 100px;
     align-self: center;
     white-space: nowrap;
-    overflow: hidden;    /* Hide overflow text */
+    overflow: hidden;    
 }
 
 #userInput{
@@ -144,4 +146,55 @@ label p{
     border-radius: 4px;
     border-color: rgba(255, 0, 0, 0.377);
     transition: none;
+}
+
+@media screen and (max-width: 600px){
+    .div-for-all {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 420px){
+    .div-for-all {
+        width: 100%;
+    }
+
+    #allTodos {
+        display:flex;
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: space-around;
+    }
+
+    #itemsLeft {
+        order: 1;
+        flex: 1;
+        overflow: visible;
+        width: 0;
+    }
+
+    #clearCompleted {
+        order:2;
+        margin-left: 30%;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    #all {
+        order: 3;
+        flex:1;
+        margin-left: 30%;
+    }
+
+    #active {
+        order: 4;
+        flex:1;
+    }
+
+    #completed{
+        order:5;
+        flex: 1;
+        margin-right: 20%;
+    }
+
 }
