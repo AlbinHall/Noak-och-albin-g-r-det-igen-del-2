@@ -66,6 +66,9 @@ function createTodoElement() {
         checkBox.classList.add("todoCheckBox")
         deleteButton.classList.add("todoDeleteButton")
 
+        //för GUI tester
+        listItem.setAttribute("id",'todo-title');
+
         deleteButton.addEventListener("click", function () {
             removeTodoElement(i);
         });
@@ -83,9 +86,11 @@ function createTodoElement() {
             itemCounter();
         });
     }
+
     displayBtns();
     itemCounter();
 }
+
 
 function clearAllChecked() {
     for (let i = inputList.length - 1; i >= 0; i--) {
