@@ -50,7 +50,7 @@ function createTodoElement() {
             listItem.style.color = "grey";
         }
 
-        deleteButton.innerText = "X";
+        deleteButton.innerText = "❌";
 
         // add JS-created elements to HTML
         todoDiv.appendChild(checkBox);

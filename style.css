@@ -113,6 +113,8 @@ input:focus {outline:none;}
 .todoCheckBox {
     margin-left: 10px;
     margin-right: 10px;
+    height: 30px;
+    width: 30px;
 }
 
 .todoDeleteButton {
